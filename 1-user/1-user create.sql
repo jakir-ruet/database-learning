@@ -25,4 +25,7 @@
 -- SHOW GRANTS FOR 'jakir'@'localhost';
 
 -- SELECT USER FROM MYSQL.USER;
--- DROP USER 'sammy'@'localhost';
+-- DROP USER 'sammy'@'localhost'; 
+
+-- Password Change
+UPDATE USER SET PASSWORD = PASSWORD('My@054004') WHERE USER = 'jakir' AND host = 'localhost'; 

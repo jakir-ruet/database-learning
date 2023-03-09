@@ -1,16 +1,15 @@
--- create database mydatabase
--- use mydatabase
+-- CREATE DATABASE MYTESTDB
+-- USE MYTESTDB
 
--- create table mytable
--- (
--- 	Id int unsigned,
---     Name varchar(125),
---     Father_Name varchar (125),
---     Mother_Name varchar (125),
---     Email varchar(120),
---     Phone varchar(120)
+-- CREATE TABLE MYTESTTABLE(
+--     Id INT UNSIGNED UNIQUE,
+--     USER_NAME VARCHAR(150),
+--     FATHER_NAME VARCHAR(150),
+--     MOTHER_NAME VARCHAR(150),
+--     EMAIL VARCHAR(100),
+--     PHONE VARCHAR(100)
 -- )
 
--- select * from mytable
-
--- insert into mytable(Id, Name, Father_Name, Mother_Name, Email, Phone) values(1, 'jakir', 'humaion', 'banu', 'jakir@gmail.com', '01788916805')
+-- SELECT * FROM MYTESTTABLE;
+-- INSERT INTO MYTESTTABLE(Id, User_NAME, FATHER_NAME, MOTHER_NAME, EMAIL, PHONE) VALUE(1, 'Jakir', 'Humaion Ali', 'Banu Begum', 'jakir.ruet.bd@gmail.com', '+8801788916805');
+-- INSERT INTO MYTESTTABLE(Id, User_NAME, FATHER_NAME, MOTHER_NAME, EMAIL, PHONE) VALUE(2, 'Jasim', 'Ali Ahmed', 'Sarah Begum', 'jasim.ruet.bd@gmail.com', '+8801788916806');

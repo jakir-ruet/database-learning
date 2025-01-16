@@ -58,6 +58,169 @@ Data types are used to represent the nature of the data that can be stored in th
 | `table`        | Stores result set for later processing.                                   | N/A                          |
 | `uniqueidentifier` | Stores GUID (Globally Unique Identifier).                              | N/A                          |
 
+# Normalization in DBMS (SQL)
+
+Normalization is the process of organizing the fields (columns) and tables (relations) of a database to minimize redundancy and dependency. The goal of normalization is to ensure that the database is efficient, consistent, and free from undesirable characteristics like update anomalies, insertion anomalies, and deletion anomalies.
+
+Normalization is typically done in stages, each stage or form called a **normal form (NF)**. The most common normal forms are **1NF**, **2NF**, **3NF**, and **BCNF**.
+
+## 1. First Normal Form (1NF)
+
+A table is in **1NF** if:
+- It has a primary key.
+- All columns contain atomic (indivisible) values.
+- Each column contains values of a single type.
+- Each column contains unique values for a given record.
+
+### Example:
+Consider the following table of students and their courses:
+
+| StudentID | StudentName | Courses                        |
+|-----------|-------------|--------------------------------|
+| 1         | Alice       | Math, English, History         |
+| 2         | Bob         | Science, Math                  |
+
+In this case, the **Courses** column is not atomic because it contains multiple values. To convert this table to **1NF**, we split the courses into separate rows:
+
+| StudentID | StudentName | Course   |
+|-----------|-------------|----------|
+| 1         | Alice       | Math     |
+| 1         | Alice       | English  |
+| 1         | Alice       | History  |
+| 2         | Bob         | Science  |
+| 2         | Bob         | Math     |
+
+Now, each column contains atomic values, and the table is in **1NF**.
+
+---
+
+## 2. Second Normal Form (2NF)
+
+A table is in **2NF** if:
+- It is in **1NF**.
+- It does not have partial dependency, i.e., every non-key attribute is fully dependent on the primary key.
+
+**Partial dependency** occurs when a non-key column is dependent on only part of the composite primary key. This is only relevant when you have a composite primary key (a key made up of more than one column).
+
+### Example:
+Consider the following table of orders:
+
+| OrderID | ProductID | ProductName | Quantity | Price |
+|---------|-----------|-------------|----------|-------|
+| 1       | 101       | Laptop      | 2        | 500   |
+| 1       | 102       | Mouse       | 1        | 25    |
+| 2       | 101       | Laptop      | 1        | 500   |
+
+Here, **OrderID** and **ProductID** together form the composite primary key. The **ProductName** and **Price** are dependent only on **ProductID**, not on the full composite key (**OrderID, ProductID**). To achieve **2NF**, we split the table into two:
+
+1. **Orders Table:**
+
+| OrderID | ProductID | Quantity |
+|---------|-----------|----------|
+| 1       | 101       | 2        |
+| 1       | 102       | 1        |
+| 2       | 101       | 1        |
+
+2. **Products Table:**
+
+| ProductID | ProductName | Price |
+|-----------|-------------|-------|
+| 101       | Laptop      | 500   |
+| 102       | Mouse       | 25    |
+
+Now, both tables are in **2NF**, as all non-key attributes are fully dependent on the primary key.
+
+---
+
+## 3. Third Normal Form (3NF)
+
+A table is in **3NF** if:
+- It is in **2NF**.
+- It does not have transitive dependency, i.e., non-key attributes are not dependent on other non-key attributes.
+
+**Transitive dependency** occurs when a non-key attribute depends on another non-key attribute rather than the primary key.
+
+### Example:
+Consider the following table of employees:
+
+| EmployeeID | EmployeeName | DepartmentID | DepartmentName | Manager |
+|------------|--------------|--------------|----------------|---------|
+| 1          | Alice        | D1           | Sales          | John    |
+| 2          | Bob          | D2           | HR             | Sarah   |
+
+Here, **DepartmentName** and **Manager** are dependent on **DepartmentID**, which is a non-key attribute. This is a transitive dependency because **DepartmentID** determines **DepartmentName** and **Manager**, and they depend on **DepartmentID** rather than on the primary key **EmployeeID**.
+
+To achieve **3NF**, we break the table into two:
+
+1. **Employees Table:**
+
+| EmployeeID | EmployeeName | DepartmentID |
+|------------|--------------|--------------|
+| 1          | Alice        | D1           |
+| 2          | Bob          | D2           |
+
+2. **Departments Table:**
+
+| DepartmentID | DepartmentName | Manager |
+|--------------|----------------|---------|
+| D1           | Sales          | John    |
+| D2           | HR             | Sarah   |
+
+Now, the tables are in **3NF**, with no transitive dependencies.
+
+---
+
+## 4. Boyce-Codd Normal Form (BCNF)
+
+A table is in **BCNF** if:
+- It is in **3NF**.
+- It has no exceptions to the rule that every determinant is a candidate key. In simpler terms, if any non-prime attribute (not part of a candidate key) determines another attribute, it violates BCNF.
+
+In **BCNF**, each determinant must be a candidate key.
+
+### Example:
+Consider the following table of courses:
+
+| CourseID | Instructor | Room  |
+|----------|------------|-------|
+| CS101    | Dr. Smith  | A101  |
+| CS102    | Dr. Johnson| B202  |
+
+In this case, **Instructor** determines **Room**, but **Instructor** is not a candidate key (only **CourseID** is the primary key). This violates BCNF because **Instructor** (a non-key attribute) is determining another attribute (**Room**).
+
+To achieve **BCNF**, we split the table into two:
+
+1. **Courses Table:**
+
+| CourseID | Instructor |
+|----------|------------|
+| CS101    | Dr. Smith  |
+| CS102    | Dr. Johnson|
+
+2. **Rooms Table:**
+
+| Instructor  | Room  |
+|-------------|-------|
+| Dr. Smith   | A101  |
+| Dr. Johnson | B202  |
+
+Now the tables are in **BCNF**.
+
+---
+
+## Summary of Normal Forms (NF):
+
+| Normal Form | Condition                                                                                           |
+|-------------|-----------------------------------------------------------------------------------------------------|
+| **1NF**     | Each column contains atomic values.                                                                 |
+| **2NF**     | It is in 1NF, and there is no partial dependency (i.e., non-key attributes depend on the whole key).  |
+| **3NF**     | It is in 2NF, and there is no transitive dependency (i.e., non-key attributes do not depend on other non-key attributes). |
+| **BCNF**    | It is in 3NF, and there is no exception to the rule that every determinant is a candidate key.       |
+
+---
+
+## Conclusion:
+Normalization helps in reducing redundancy, improving data integrity, and ensuring efficient storage and retrieval. However, in some cases, normalization can lead to performance issues (e.g., requiring many joins). In such cases, a balanced approach between normalization and denormalization may be needed based on specific use cases.
 
 ## Courtesy of Jakir
 

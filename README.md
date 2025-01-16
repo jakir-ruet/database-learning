@@ -301,7 +301,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 7. The IIF Function (instead of CASE)
 8. The CASE Expression
 
-# Views
+### Views
 1. Creating Views
 2. Altering or Dropping Views
 3. Updatable Views

@@ -40,6 +40,7 @@ DDL is used to specify the database schema. It is used for creating and altering
 | TRUNCATE      | To delete all records from a table without removing the table itself. | `TRUNCATE TABLE Employees;`                            |
 | RENAME        | To rename a database object (e.g., a table, column, etc.).            | `RENAME TABLE Employees TO Staff;`                     |
 | COMMENT       | To add comments to database objects (e.g., tables, columns).          | `COMMENT ON COLUMN Employees.Name IS 'Employee Name';` |
+
 Since these commands define or update the schema, they are categorized as part of **Data Definition Language**.
 
 #### Data Manipulation Language (DML)
@@ -57,6 +58,7 @@ DCL is used for granting and revoking access to the database. The main DCL opera
 | ---------- | ---------------------------------------- | -------------------------------------------- |
 | **GRANT**  | To give access privileges to a user.     | `GRANT SELECT ON Employees TO user_name;`    |
 | **REVOKE** | To remove access privileges from a user. | `REVOKE SELECT ON Employees FROM user_name;` |
+
 Although DDL, DML, and DCL are often considered separate languages, they are actually components of a single database language like SQL.
 
 #### Transaction Control Language (TCL)

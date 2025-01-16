@@ -249,7 +249,7 @@ BEGIN
     SELECT * FROM TableName WHERE Column1 = @Parameter1;
     -- Additional SQL statements
 END;
-
+```
 ## Courtesy of Jakir
 
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]

@@ -1,255 +1,430 @@
-[![LinkedIn][linkedin-shield-lapissoft]][linkedin-url-lapissoft]
-[![Facebook-Page][facebook-shield-lapissoft]][facebook-url-lapissoft]
-[![Youtube][youtube-shield-lapissoft]][youtube-url-lapissoft]
+[![LinkedIn][linkedin-shield-lapissoft][linkedin-url-lapissoft]
+[![Facebook-Page][facebook-shield-lapissoft][facebook-url-lapissoft]
+[![Youtube][youtube-shield-lapissoft][youtube-url-lapissoft]
 
 ## Visit Us [Lapis Soft](http://www.lapissoft.com)
 
 # Welcome to Database Learning
-## [For More](SQL Database Introduction to Advance.pdf)
+## [For More](/docs/Introduction%20to%20Advance.pdf)
 
+# Getting Started
+## Introduction
+1. What is SQL?
+   SQL (Structured Query Language) is the standard programming language used to manage and manipulate relational databases. It allows users to query, insert, update, and delete data stored in a database.
+2. Installing SQL Server on Windows
+3. Installing SQL Server on Mac (via Docker or remote access)
+4. Creating Databases
 
-# SQL Data Types
-Data types are used to represent the nature of the data that can be stored in the database table. For example, in a particular column of a table, if we want to store a string type of data, we will have to declare a string data type for this column. Data types are mainly classified into three categories for every database:
-1. String Data types
-2. Numeric Data types
-3. Date and time Data types
+## Difference Between DBMS and RDBMS
+Although both DBMS and RDBMS are used to store information in a physical database, there are significant differences between them. Below is a comparison of the main differences:
+| No. | DBMS                                                                     | RDBMS                                                                                                              |
+| --- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| 1   | DBMS applications store data as files.                                   | RDBMS applications store data in a tabular form.                                                                   |
+| 2   | Data is generally stored in hierarchical or navigational form.           | Data is stored in tables with identifiers called primary keys.                                                     |
+| 3   | Normalization is not present in DBMS.                                    | Normalization is present in RDBMS.                                                                                 |
+| 4   | DBMS does not apply any security regarding data manipulation.            | RDBMS defines integrity constraints to ensure ACID properties (Atomicity, Consistency, Isolation, and Durability). |
+| 5   | DBMS uses a file system, so there is no relationship between tables.     | RDBMS stores data in tables with relationships between them.                                                       |
+| 6   | DBMS provides uniform methods to access data.                            | RDBMS supports a tabular structure and relationships for accessing stored information.                             |
+| 7   | DBMS does not support distributed databases.                             | RDBMS supports distributed databases.                                                                              |
+| 8   | DBMS is suited for small organizations with single users and small data. | RDBMS is designed to handle large data and support multiple users.                                                 |
+| 9   | Examples: File systems, XML, etc.                                        | Examples: MySQL, PostgreSQL, SQL Server, Oracle, etc.                                                              |
 
+# Database Languages
+A database system provides various languages for defining, manipulating, and controlling data. These include the **Data Definition Language (DDL)**, **Data Manipulation Language (DML)**, **Data Control Language (DCL)**, and **Transaction Control Language (TCL)**. In practice, these languages are not separate but form parts of a single database language, such as **SQL**.
+
+## Data Definition Language (DDL)
+DDL is used to specify the database schema. It is used for creating and altering database structures such as tables, schemas, indexes, and constraints. The following operations are part of DDL:
+- **CREATE**: To create a database instance.
+- **ALTER**: To alter the structure of the database.
+- **DROP**: To drop database instances or objects.
+- **TRUNCATE**: To delete all records from a table (without removing the table itself).
+- **RENAME**: To rename a database object.
+- **COMMENT**: To add comments to database objects.
+Since these commands define or update the schema, they are categorized as part of **Data Definition Language**.
+
+## Data Manipulation Language (DML)
+DML is used for accessing and manipulating data stored in a database. The following operations are part of DML:
+- **SELECT**: To read records from one or more tables.
+- **INSERT**: To insert records into tables.
+- **UPDATE**: To update existing data in a table.
+- **DELETE**: To delete records from a table.
+
+## Data Control Language (DCL)
+DCL is used for granting and revoking access to the database. The main DCL operations are:
+- **GRANT**: To give access privileges to a user.
+- **REVOKE**: To remove access privileges from a user.
+Although DDL, DML, and DCL are often considered separate languages, they are actually components of a single database language like SQL.
+
+## Transaction Control Language (TCL)
+TCL commands manage changes to the database that are made using DML. These changes can either be committed (saved) or rolled back (undone) using TCL commands:
+- **COMMIT**: To save all changes made by DML commands.
+- **ROLLBACK**: To undo changes made by DML commands and revert the database to its previous state.
+
+# Keys in Relational Databases
+
+Keys are essential in relational databases for identifying unique rows and establishing relationships between tables. Here's a breakdown of the different types of keys in a relational database:
+
+## 1. Primary Key
+A **Primary Key** is a column or a set of columns that uniquely identifies each row in a table. It must contain unique values and cannot have `NULL` values.
+
+### Example
+| Roll | Name  | Age |
+| ---- | ----- | --- |
+| 101  | Steve | 23  |
+| 102  | John  | 24  |
+
+Here, `Roll` is the primary key because each roll number is unique.
+
+> Note: Attributes like `Name` or `Age` cannot be primary keys, as they may not be unique.
+
+## 2. Super Key
+A **Super Key** is a set of one or more attributes that can uniquely identify a row in a table. Super keys can contain additional attributes beyond what is necessary for unique identification.
+
+### Example
+| Emp_SSN | Emp_Number | Emp_Name |
+| ------- | ---------- | -------- |
+| 258963  | 256        | Steve    |
+| 258741  | 254        | Robert   |
+
+**Super Keys:**
+- {Emp_SSN}
+- {Emp_Number}
+- {Emp_SSN, Emp_Number}
+- {Emp_SSN, Emp_Name}
+- {Emp_SSN, Emp_Number, Emp_Name}
+- {Emp_Number, Emp_Name}
+
+## 3. Candidate Key
+A **Candidate Key** is a minimal super key, meaning it uniquely identifies rows without any redundant attributes. A table can have multiple candidate keys.
+
+### Example
+For the table above, the following are candidate keys:
+- {Emp_SSN}
+- {Emp_Number}
+
+Other sets, such as {Emp_SSN, Emp_Name}, contain redundant attributes.
+
+## 4. Primary Key vs Candidate Key
+- All candidate keys are super keys, but not all super keys are candidate keys.
+- The **Primary Key** is selected from the set of candidate keys. A database designer or administrator typically chooses the primary key.
+
+## 5. Alternate Key
+An **Alternate Key** is any candidate key that is not selected as the primary key. These keys remain as alternative ways to uniquely identify rows.
+
+### Example
+If `{Emp_SSN}` is selected as the primary key, `{Emp_Number}` becomes the alternate key.
+
+## 6. Composite Key
+A **Composite Key** is a key that consists of more than one attribute to uniquely identify a row. Composite keys are typically used when a single attribute is not sufficient to guarantee uniqueness.
+
+### Example
+| Cust_Id | Order_Id | Product_Code | Product_Count |
+| ------- | -------- | ------------ | ------------- |
+| 125     | 625      | 352          | 35            |
+| 225     | 552      | 356          | 36            |
+
+**Composite Key:**
+- {Cust_Id, Product_Code}
+
+## 7. Foreign Key
+A **Foreign Key** is a column in a table that points to the primary key of another table. It establishes relationships between two tables.
+
+### Example
+| Course_Id | Stu_Id |
+| --------- | ------ |
+| C01       | 101    |
+| C02       | 102    |
+
+In the above example, `Stu_Id` is a foreign key in the **Course_enrollment** table that references the **Student** table.
+
+## 8. Constraints in Databases
+Constraints are rules that limit the types of data that can be inserted, updated, or deleted from a table. They ensure data integrity and consistency.
+
+### Types of Constraints:
+- **NOT NULL**: Ensures that a column cannot contain a `NULL` value.
+- **UNIQUE**: Ensures that all values in a column are unique.
+- **DEFAULT**: Provides a default value for a column when no value is specified.
+- **CHECK**: Ensures that values in a column fall within a specific range.
+- **PRIMARY KEY**: Uniquely identifies each record in a table.
+- **FOREIGN KEY**: Ensures that a value in a column corresponds to a value in another table.
+
+## Example of Constraints
+```sql
+CREATE TABLE STUDENT (
+    ROLL_NO INT NOT NULL,
+    STU_NAME VARCHAR(35) NOT NULL,
+    STU_AGE INT NOT NULL,
+    STU_ADDRESS VARCHAR(235),
+    PRIMARY KEY (ROLL_NO)
+);
+```
+
+## Mapping Cardinality
+Mapping cardinality defines the number of relationships between entities in a relational database.
+- `One to One:` An entity in set A can be associated with at most one entity in set B, and vice versa.
+- `One to Many:` An entity in set A can be associated with multiple entities in set B, but an entity in set B can only be associated with one entity in set A.
+- `Many to One:` An entity in set A can only be associated with one entity in set B, but an entity in set B can be associated with multiple entities in set A.
+- `Many to Many:` An entity in set A can be associated with multiple entities in set B, and vice versa.
+
+Example of One to Many
+```sql
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY NOT NULL,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20)
+);
+
+CREATE TABLE Order (
+    order_id INT PRIMARY KEY NOT NULL,
+    customer_id INT,
+    order_details VARCHAR(50),
+    CONSTRAINT fk_Customers FOREIGN KEY (customer_id) REFERENCES Customer
+);
+```
+
+## Normalization in DBMS
+Normalization is a process of organizing data in a database to reduce redundancy and improve data integrity. There are several Normal Forms (NF), each with its own set of rules.
+
+### Types of Normal Forms:
+- `1NF (First Normal Form):` Ensures that each column contains atomic (indivisible) values.
+- `2NF (Second Normal Form):` Removes partial dependency on a candidate key.
+- `3NF (Third Normal Form):` Eliminates transitive dependency.
+- `BCNF (Boyce-Codd Normal Form):` A stricter version of 3NF.
+
+Example of First Normal Form (1NF)
+If a table contains a column with multiple values (e.g., multiple phone numbers), it violates 1NF. To comply with 1NF, each column should contain only atomic values.
+
+### Example of Normalization to 1NF
+#### Before 1NF (Non-compliant):
+| Emp_Id | Emp_Name | Emp_Mobile             |
+| ------ | -------- | ---------------------- |
+| 102    | Jon      | 8812121212, 9900012222 |
+| 103    | Ron      | 7778881212             |
+
+`Explanation:` The `Emp_Mobile` column contains multiple values for Jon, which violates the rule of 1NF that requires columns to have atomic (single) values.
+
+#### After 1NF (Compliant):
+| Emp_Id | Emp_Name | Emp_Mobile |
+| ------ | -------- | ---------- |
+| 102    | Jon      | 8812121212 |
+| 102    | Jon      | 9900012222 |
+| 103    | Ron      | 7778881212 |
+
+`Explanation:` The `Emp_Mobile` column now contains only a single mobile number per row, ensuring that each attribute holds atomic values, which complies with **1NF**.
+- `Example of Second Normal Form (2NF):` A table is in 2NF if it's in 1NF and if there is no partial dependency (i.e., no non-prime attribute depends on a subset of a candidate key).
+- `Example of Third Normal Form (3NF):` A table is in 3NF if it’s in 2NF and there is no transitive dependency, meaning non-prime attributes should not depend on other non-prime attributes.
+- `Boyce-Codd Normal Form (BCNF):` BCNF is a stricter version of 3NF where, for every functional dependency, the left side must be a super key.
+
+By applying normalization, you can eliminate various types of anomalies (insertion, update, and deletion anomalies) and ensure the database maintains consistency and integrity.
+
+# Retrieving Data from a Single Table
+1. The SELECT Statement
+2. The SELECT Clause
+3. The WHERE Clause
+4. The AND, OR, and NOT Operators
+5. The IN Operator
+6. The BETWEEN Operator
+7. The LIKE Operator
+8. The PATINDEX & LIKE Operator for Pattern Matching
+9. The IS NULL Operator
+10. The ORDER BY Clause
+11. The TOP Clause (instead of LIMIT)
+
+# Retrieving Data from Multiple Tables
+1. Inner Joins
+2. Joining Across Databases
+3. Self Joins
+4. Joining Multiple Tables
+5. Compound Join Conditions
+6. Implicit Join Syntax
+7. Outer Joins
+8. Outer Join Between Multiple Tables
+9. Self-Outer Joins
+10. The USING Clause (Not applicable in MSSQL, use ON instead)
+11. Natural Joins (MSSQL does not have Natural Joins, use explicit join conditions)
+12. Cross Joins
+13. Unions
+
+# Inserting, Updating, and Deleting Data
+1. Column Attributes
+2. Inserting a Row
+3. Inserting Multiple Rows
+4. Inserting Hierarchical Rows
+5. Creating a Copy of a Table (via `SELECT INTO` or `INSERT INTO`)
+6. Updating a Single Row
+7. Updating Multiple Rows
+8. Using Subqueries in Updates
+9. Deleting Rows
+10. Restoring Databases
+
+# Summarizing Data
+1. Aggregate Functions (SUM, AVG, COUNT, etc.)
+2. The GROUP BY Clause
+3. The HAVING Clause
+4. The ROLLUP Operator (also, CUBE in MSSQL)
+
+# Writing Complex Queries
+1. Introduction
+2. Subqueries
+3. The IN Operator
+4. Subqueries vs Joins
+5. The ALL Keyword
+6. The ANY Keyword
+7. Correlated Subqueries
+8. The EXISTS Operator
+9. Subqueries in the SELECT Clause
+10. Subqueries in the FROM Clause
+
+# Essential SQL Server Functions
+1. Numeric Functions
+2. String Functions
+3. Date Functions in SQL Server
+4. Formatting Dates and Times
+5. Calculating Dates and Times
+6. The ISNULL and COALESCE Functions
+7. The IIF Function (instead of CASE)
+8. The CASE Expression
+
+# Views
+1. Creating Views
+2. Altering or Dropping Views
+3. Updatable Views
+4. The WITH CHECK OPTION Clause
+5. Other Benefits of Views
+6. Stored Procedures
+
+# What are Stored Procedures?
+1. Creating a Stored Procedure
+2. Creating Procedures Using SQL Server Management Studio (SSMS)
+3. Dropping Stored Procedures
+4. Parameters
+5. Parameters with Default Value
+6. Parameter Validation
+7. Output Parameters
+8. Variables
+9. Functions
+10. Other Conventions
+
+# Triggers and Events
+1. Triggers
+2. Viewing Triggers
+3. Dropping Triggers
+4. Using Triggers for Auditing
+5. Events (SQL Server Agent Jobs)
+6. Viewing, Dropping, and Altering Jobs/Events
+
+# Transactions and Concurrency
+1. Transactions
+2. Creating Transactions
+3. Concurrency and Locking
+4. Concurrency Problems
+5. Transaction Isolation Levels (Read Uncommitted, Read Committed, Repeatable Read, Serializable)
+6. Handling Deadlocks
+
+# Data Types
 ## SQL Server String Data Type
-| Data Type     | Description                                                            | Max Size                    |
-|---------------|------------------------------------------------------------------------|-----------------------------|
-| `char(n)`     | Fixed width character string data type.                                 | Up to 8000 characters       |
-| `varchar(n)`  | Variable width character string data type.                             | Up to 8000 characters       |
-| `varchar(max)`| Variable width character string data type.                             | Up to 1,073,741,824 characters|
-| `text`        | Variable width character string data type.                             | Up to 2GB of text data      |
-| `nchar`       | Fixed width Unicode string data type.                                  | Up to 4000 characters       |
-| `nvarchar`    | Variable width Unicode string data type.                               | Up to 4000 characters       |
-| `ntext`       | Variable width Unicode string data type.                               | Up to 2GB of text data      |
-| `binary(n)`   | Fixed width Binary string data type.                                   | Up to 8000 bytes            |
-| `varbinary`   | Variable width Binary string data type.                                | Up to 8000 bytes            |
-| `image`       | Variable width Binary string data type.                                | Up to 2GB                   |
+| Data Type      | Description                                | Max Size                       |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| `char(n)`      | Fixed width character string data type.    | Up to 8000 characters          |
+| `varchar(n)`   | Variable width character string data type. | Up to 8000 characters          |
+| `varchar(max)` | Variable width character string data type. | Up to 1,073,741,824 characters |
+| `text`         | Variable width character string data type. | Up to 2GB of text data         |
+| `nchar`        | Fixed width Unicode string data type.      | Up to 4000 characters          |
+| `nvarchar`     | Variable width Unicode string data type.   | Up to 4000 characters          |
+| `ntext`        | Variable width Unicode string data type.   | Up to 2GB of text data         |
+| `binary(n)`    | Fixed width Binary string data type.       | Up to 8000 bytes               |
+| `varbinary`    | Variable width Binary string data type.    | Up to 8000 bytes               |
+| `image`        | Variable width Binary string data type.    | Up to 2GB                      |
 
 ## SQL Server Numeric Data Types
-| Data Type     | Description                                                            | Range                         |
-|---------------|------------------------------------------------------------------------|-------------------------------|
-| `bit`         | Integer that can be 0, 1 or null.                                       | 0, 1, NULL                    |
-| `tinyint`     | Whole numbers from 0 to 255.                                            | 0 to 255                      |
-| `smallint`    | Whole numbers between -32,768 and 32,767.                              | -32,768 to 32,767             |
-| `int`         | Whole numbers between -2,147,483,648 and 2,147,483,647.                | -2,147,483,648 to 2,147,483,647|
-| `bigint`      | Whole numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807. | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
-| `float(n)`    | Floating precision number data from -1.79E+308 to 1.79E+308. The `n` parameter indicates whether the field should hold 4 or 8 bytes. | -1.79E+308 to 1.79E+308      |
-| `real`        | Floating precision number from -3.40E+38 to 3.40E+38.                  | -3.40E+38 to 3.40E+38        |
-| `money`       | Monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807. | -922,337,233,685,477.5808 to 922,337,203,685,477.5807 |
+| Data Type  | Description                                                                                                                          | Range                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| `bit`      | Integer that can be 0, 1 or null.                                                                                                    | 0, 1, NULL                                              |
+| `tinyint`  | Whole numbers from 0 to 255.                                                                                                         | 0 to 255                                                |
+| `smallint` | Whole numbers between -32,768 and 32,767.                                                                                            | -32,768 to 32,767                                       |
+| `int`      | Whole numbers between -2,147,483,648 and 2,147,483,647.                                                                              | -2,147,483,648 to 2,147,483,647                         |
+| `bigint`   | Whole numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.                                                      | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| `float(n)` | Floating precision number data from -1.79E+308 to 1.79E+308. The `n` parameter indicates whether the field should hold 4 or 8 bytes. | -1.79E+308 to 1.79E+308                                 |
+| `real`     | Floating precision number from -3.40E+38 to 3.40E+38.                                                                                | -3.40E+38 to 3.40E+38                                   |
+| `money`    | Monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807.                                                            | -922,337,233,685,477.5808 to 922,337,203,685,477.5807   |
 
 ## SQL Server Date and Time Data Type
-| Data Type     | Description                                                            | Range                         |
-|---------------|------------------------------------------------------------------------|-------------------------------|
-| `datetime`    | Date and time combination, supports range from January 1, 1753 to December 31, 9999 with 3.33 milliseconds accuracy. | January 1, 1753 to December 31, 9999 |
-| `datetime2`   | Date and time combination, supports range from January 1, 0001 to December 31, 9999 with 100 nanoseconds accuracy. | January 1, 0001 to December 31, 9999 |
-| `date`        | Stores date only.                                                       | January 1, 0001 to December 31, 9999 |
-| `time`        | Stores time only with 100 nanoseconds accuracy.                         | N/A                           |
-| `timestamp`   | Stores a unique number when a new row gets created or modified, based on an internal clock. | N/A                           |
+| Data Type   | Description                                                                                                          | Range                                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `datetime`  | Date and time combination, supports range from January 1, 1753 to December 31, 9999 with 3.33 milliseconds accuracy. | January 1, 1753 to December 31, 9999 |
+| `datetime2` | Date and time combination, supports range from January 1, 0001 to December 31, 9999 with 100 nanoseconds accuracy.   | January 1, 0001 to December 31, 9999 |
+| `date`      | Stores date only.                                                                                                    | January 1, 0001 to December 31, 9999 |
+| `time`      | Stores time only with 100 nanoseconds accuracy.                                                                      | N/A                                  |
+| `timestamp` | Stores a unique number when a new row gets created or modified, based on an internal clock.                          | N/A                                  |
 
 ## SQL Server Other Data Types
-| Data Type      | Description                                                              | Max Size                     |
-|----------------|--------------------------------------------------------------------------|------------------------------|
-| `sql_variant`  | Used for various data types except for text, timestamp, and ntext. Stores up to 8000 bytes of data. | Up to 8000 bytes             |
-| `XML`          | Stores XML formatted data.                                                | Maximum 2GB                   |
-| `cursor`       | Stores a reference to a cursor used for database operations.             | N/A                          |
-| `table`        | Stores result set for later processing.                                   | N/A                          |
-| `uniqueidentifier` | Stores GUID (Globally Unique Identifier).                              | N/A                          |
+| Data Type          | Description                                                                                         | Max Size         |
+| ------------------ | --------------------------------------------------------------------------------------------------- | ---------------- |
+| `sql_variant`      | Used for various data types except for text, timestamp, and ntext. Stores up to 8000 bytes of data. | Up to 8000 bytes |
+| `XML`              | Stores XML formatted data.                                                                          | Maximum 2GB      |
+| `cursor`           | Stores a reference to a cursor used for database operations.                                        | N/A              |
+| `table`            | Stores result set for later processing.                                                             | N/A              |
+| `uniqueidentifier` | Stores GUID (Globally Unique Identifier).                                                           | N/A              |
 
-# Normalization in DBMS (SQL)
+# Designing Databases
+1. Introduction
+2. Data Modeling
+3. Conceptual Models
+4. Logical Models
+5. Physical Models
+6. Primary Keys
+7. Foreign Keys
+8. Foreign Key Constraints
+9. Normalization
+10. 1NF- First Normal Form
+11. Link Tables
+12. 2NF- Second Normal Form
+13. 3NF- Third Normal Form
+14. My Pragmatic Advice
+15. Don't Model the Universe
+16. Forward Engineering a Model (From SSMS or Data Tools)
+17. Synchronizing a Model with a Database
+18. Reverse Engineering a Database (Using SSMS or Visual Studio)
+19. Project- Flight Booking System
+20. Solution- Conceptual Model
+21. Solution- Logical Model
+22. Project - Video Rental Application
+23. Solution- Conceptual Model
+24. Solution- Logical Model
+25. Creating and Dropping Databases
+26. Creating Tables
+27. Altering Tables
+28. Creating Relationships
+29. Altering Primary and Foreign Key Constraints
+30. Character Sets and Collations
+31. Storage Engines (SQL Server has one engine)
 
-Normalization is the process of organizing the fields (columns) and tables (relations) of a database to minimize redundancy and dependency. The goal of normalization is to ensure that the database is efficient, consistent, and free from undesirable characteristics like update anomalies, insertion anomalies, and deletion anomalies.
+# Indexing for High Performance
+1. Introduction
+2. Indexes
+3. Creating Indexes
+4. Viewing Indexes
+5. Prefix Indexes
+6. Full-text Indexes
+7. Composite Indexes
+8. Order of Columns in Composite Indexes
+9. When Indexes are Ignored
+10. Using Indexes for Sorting
+11. Covering Indexes
+12. Index Maintenance
+13. Performance Best Practices
 
-Normalization is typically done in stages, each stage or form called a **normal form (NF)**. The most common normal forms are **1NF**, **2NF**, **3NF**, and **BCNF**.
+# Securing Databases
+1. Introduction
+2. Creating a User
+3. Viewing Users
+4. Dropping Users
+5. Changing Passwords
+6. Granting Permissions
+7. Viewing Permissions
+8. Revoking Permissions
 
-## 1. First Normal Form (1NF)
 
-A table is in **1NF** if:
-- It has a primary key.
-- All columns contain atomic (indivisible) values.
-- Each column contains values of a single type.
-- Each column contains unique values for a given record.
-
-### Example:
-Consider the following table of students and their courses:
-
-| StudentID | StudentName | Courses                        |
-|-----------|-------------|--------------------------------|
-| 1         | Alice       | Math, English, History         |
-| 2         | Bob         | Science, Math                  |
-
-In this case, the **Courses** column is not atomic because it contains multiple values. To convert this table to **1NF**, we split the courses into separate rows:
-
-| StudentID | StudentName | Course   |
-|-----------|-------------|----------|
-| 1         | Alice       | Math     |
-| 1         | Alice       | English  |
-| 1         | Alice       | History  |
-| 2         | Bob         | Science  |
-| 2         | Bob         | Math     |
-
-Now, each column contains atomic values, and the table is in **1NF**.
-
----
-
-## 2. Second Normal Form (2NF)
-
-A table is in **2NF** if:
-- It is in **1NF**.
-- It does not have partial dependency, i.e., every non-key attribute is fully dependent on the primary key.
-
-**Partial dependency** occurs when a non-key column is dependent on only part of the composite primary key. This is only relevant when you have a composite primary key (a key made up of more than one column).
-
-### Example:
-Consider the following table of orders:
-
-| OrderID | ProductID | ProductName | Quantity | Price |
-|---------|-----------|-------------|----------|-------|
-| 1       | 101       | Laptop      | 2        | 500   |
-| 1       | 102       | Mouse       | 1        | 25    |
-| 2       | 101       | Laptop      | 1        | 500   |
-
-Here, **OrderID** and **ProductID** together form the composite primary key. The **ProductName** and **Price** are dependent only on **ProductID**, not on the full composite key (**OrderID, ProductID**). To achieve **2NF**, we split the table into two:
-
-1. **Orders Table:**
-
-| OrderID | ProductID | Quantity |
-|---------|-----------|----------|
-| 1       | 101       | 2        |
-| 1       | 102       | 1        |
-| 2       | 101       | 1        |
-
-2. **Products Table:**
-
-| ProductID | ProductName | Price |
-|-----------|-------------|-------|
-| 101       | Laptop      | 500   |
-| 102       | Mouse       | 25    |
-
-Now, both tables are in **2NF**, as all non-key attributes are fully dependent on the primary key.
-
----
-
-## 3. Third Normal Form (3NF)
-
-A table is in **3NF** if:
-- It is in **2NF**.
-- It does not have transitive dependency, i.e., non-key attributes are not dependent on other non-key attributes.
-
-**Transitive dependency** occurs when a non-key attribute depends on another non-key attribute rather than the primary key.
-
-### Example:
-Consider the following table of employees:
-
-| EmployeeID | EmployeeName | DepartmentID | DepartmentName | Manager |
-|------------|--------------|--------------|----------------|---------|
-| 1          | Alice        | D1           | Sales          | John    |
-| 2          | Bob          | D2           | HR             | Sarah   |
-
-Here, **DepartmentName** and **Manager** are dependent on **DepartmentID**, which is a non-key attribute. This is a transitive dependency because **DepartmentID** determines **DepartmentName** and **Manager**, and they depend on **DepartmentID** rather than on the primary key **EmployeeID**.
-
-To achieve **3NF**, we break the table into two:
-
-1. **Employees Table:**
-
-| EmployeeID | EmployeeName | DepartmentID |
-|------------|--------------|--------------|
-| 1          | Alice        | D1           |
-| 2          | Bob          | D2           |
-
-2. **Departments Table:**
-
-| DepartmentID | DepartmentName | Manager |
-|--------------|----------------|---------|
-| D1           | Sales          | John    |
-| D2           | HR             | Sarah   |
-
-Now, the tables are in **3NF**, with no transitive dependencies.
-
----
-
-## 4. Boyce-Codd Normal Form (BCNF)
-
-A table is in **BCNF** if:
-- It is in **3NF**.
-- It has no exceptions to the rule that every determinant is a candidate key. In simpler terms, if any non-prime attribute (not part of a candidate key) determines another attribute, it violates BCNF.
-
-In **BCNF**, each determinant must be a candidate key.
-
-### Example:
-Consider the following table of courses:
-
-| CourseID | Instructor | Room  |
-|----------|------------|-------|
-| CS101    | Dr. Smith  | A101  |
-| CS102    | Dr. Johnson| B202  |
-
-In this case, **Instructor** determines **Room**, but **Instructor** is not a candidate key (only **CourseID** is the primary key). This violates BCNF because **Instructor** (a non-key attribute) is determining another attribute (**Room**).
-
-To achieve **BCNF**, we split the table into two:
-
-1. **Courses Table:**
-
-| CourseID | Instructor |
-|----------|------------|
-| CS101    | Dr. Smith  |
-| CS102    | Dr. Johnson|
-
-2. **Rooms Table:**
-
-| Instructor  | Room  |
-|-------------|-------|
-| Dr. Smith   | A101  |
-| Dr. Johnson | B202  |
-
-Now the tables are in **BCNF**.
-
----
-
-## Summary of Normal Forms (NF):
-
-| Normal Form | Condition                                                                                           |
-|-------------|-----------------------------------------------------------------------------------------------------|
-| **1NF**     | Each column contains atomic values.                                                                 |
-| **2NF**     | It is in 1NF, and there is no partial dependency (i.e., non-key attributes depend on the whole key).  |
-| **3NF**     | It is in 2NF, and there is no transitive dependency (i.e., non-key attributes do not depend on other non-key attributes). |
-| **BCNF**    | It is in 3NF, and there is no exception to the rule that every determinant is a candidate key.       |
-
----
-
-## Conclusion:
-Normalization helps in reducing redundancy, improving data integrity, and ensuring efficient storage and retrieval. However, in some cases, normalization can lead to performance issues (e.g., requiring many joins). In such cases, a balanced approach between normalization and denormalization may be needed based on specific use cases.
-
-# What is a Stored Procedure?
-
-A **Stored Procedure** is a precompiled collection of one or more SQL statements that can be executed as a single unit. Stored procedures are used to encapsulate complex business logic, reduce the amount of repetitive SQL code, and improve performance. They can be executed by applications, users, or other procedures. They are stored in the database itself, making them reusable and easier to manage.
-
-## Benefits of Using Stored Procedures:
-1. **Modularity:** Stored procedures allow you to write and maintain complex logic in a single place. This makes the code more modular and easier to manage.
-2. **Performance:** Stored procedures are precompiled, which can lead to performance improvements compared to executing individual SQL statements every time.
-3. **Security:** By using stored procedures, you can grant users permission to execute specific procedures without giving them direct access to the underlying tables.
-4. **Reusability:** Once written, stored procedures can be reused multiple times across different applications or parts of the same application.
-5. **Maintainability:** Since the logic is contained within the database, updating business logic can be done in one place without modifying application code.
-
----
-
-## Syntax of a Stored Procedure in SQL:
-
-The basic syntax for creating a stored procedure in SQL is:
-
-```sql
-CREATE PROCEDURE ProcedureName
-    @Parameter1 DataType,
-    @Parameter2 DataType
-AS
-BEGIN
-    -- SQL Statements
-    SELECT * FROM TableName WHERE Column1 = @Parameter1;
-    -- Additional SQL statements
-END;
-```
 ## Courtesy of Jakir
 
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]

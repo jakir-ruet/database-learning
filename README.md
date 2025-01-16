@@ -233,7 +233,7 @@ If a table contains a column with multiple values (e.g., multiple phone numbers)
 
 By applying normalization, you can eliminate various types of anomalies (insertion, update, and deletion anomalies) and ensure the database maintains consistency and integrity.
 
-# Retrieving Data from a Single Table
+### Retrieving Data from a Single Table
 1. The SELECT Statement
 2. The SELECT Clause
 3. The WHERE Clause
@@ -246,7 +246,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 10. The ORDER BY Clause
 11. The TOP Clause (instead of LIMIT)
 
-# Retrieving Data from Multiple Tables
+### Retrieving Data from Multiple Tables
 1. Inner Joins
 2. Joining Across Databases
 3. Self Joins
@@ -261,7 +261,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 12. Cross Joins
 13. Unions
 
-# Inserting, Updating, and Deleting Data
+### Inserting, Updating, and Deleting Data
 1. Column Attributes
 2. Inserting a Row
 3. Inserting Multiple Rows
@@ -273,13 +273,13 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 9. Deleting Rows
 10. Restoring Databases
 
-# Summarizing Data
+### Summarizing Data
 1. Aggregate Functions (SUM, AVG, COUNT, etc.)
 2. The GROUP BY Clause
 3. The HAVING Clause
 4. The ROLLUP Operator (also, CUBE in MSSQL)
 
-# Writing Complex Queries
+### Writing Complex Queries
 1. Introduction
 2. Subqueries
 3. The IN Operator
@@ -291,7 +291,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 9. Subqueries in the SELECT Clause
 10. Subqueries in the FROM Clause
 
-# Essential SQL Server Functions
+### Essential SQL Server Functions
 1. Numeric Functions
 2. String Functions
 3. Date Functions in SQL Server
@@ -306,10 +306,10 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 2. Altering or Dropping Views
 3. Updatable Views
 4. The WITH CHECK OPTION Clause
-5. Other Benefits of Views
+###. Other Benefits of Views
 6. Stored Procedures
 
-# What are Stored Procedures?
+### What are Stored Procedures?
 1. Creating a Stored Procedure
 2. Creating Procedures Using SQL Server Management Studio (SSMS)
 3. Dropping Stored Procedures
@@ -321,7 +321,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 9. Functions
 10. Other Conventions
 
-# Triggers and Events
+### Triggers and Events
 1. Triggers
 2. Viewing Triggers
 3. Dropping Triggers
@@ -329,7 +329,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 5. Events (SQL Server Agent Jobs)
 6. Viewing, Dropping, and Altering Jobs/Events
 
-# Transactions and Concurrency
+### Transactions and Concurrency
 1. Transactions
 2. Creating Transactions
 3. Concurrency and Locking
@@ -337,8 +337,8 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 5. Transaction Isolation Levels (Read Uncommitted, Read Committed, Repeatable Read, Serializable)
 6. Handling Deadlocks
 
-# Data Types
-## SQL Server String Data Type
+### Data Types
+#### SQL Server String Data Type
 | Data Type      | Description                                | Max Size                       |
 | -------------- | ------------------------------------------ | ------------------------------ |
 | `char(n)`      | Fixed width character string data type.    | Up to 8000 characters          |
@@ -352,7 +352,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 | `varbinary`    | Variable width Binary string data type.    | Up to 8000 bytes               |
 | `image`        | Variable width Binary string data type.    | Up to 2GB                      |
 
-## SQL Server Numeric Data Types
+#### SQL Server Numeric Data Types
 | Data Type  | Description                                                                                                                          | Range                                                   |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
 | `bit`      | Integer that can be 0, 1 or null.                                                                                                    | 0, 1, NULL                                              |
@@ -364,7 +364,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 | `real`     | Floating precision number from -3.40E+38 to 3.40E+38.                                                                                | -3.40E+38 to 3.40E+38                                   |
 | `money`    | Monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807.                                                            | -922,337,233,685,477.5808 to 922,337,203,685,477.5807   |
 
-## SQL Server Date and Time Data Type
+#### SQL Server Date and Time Data Type
 | Data Type   | Description                                                                                                          | Range                                |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | `datetime`  | Date and time combination, supports range from January 1, 1753 to December 31, 9999 with 3.33 milliseconds accuracy. | January 1, 1753 to December 31, 9999 |
@@ -373,7 +373,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 | `time`      | Stores time only with 100 nanoseconds accuracy.                                                                      | N/A                                  |
 | `timestamp` | Stores a unique number when a new row gets created or modified, based on an internal clock.                          | N/A                                  |
 
-## SQL Server Other Data Types
+#### SQL Server Other Data Types
 | Data Type          | Description                                                                                         | Max Size         |
 | ------------------ | --------------------------------------------------------------------------------------------------- | ---------------- |
 | `sql_variant`      | Used for various data types except for text, timestamp, and ntext. Stores up to 8000 bytes of data. | Up to 8000 bytes |
@@ -382,7 +382,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 | `table`            | Stores result set for later processing.                                                             | N/A              |
 | `uniqueidentifier` | Stores GUID (Globally Unique Identifier).                                                           | N/A              |
 
-# Designing Databases
+### Designing Databases
 1. Introduction
 2. Data Modeling
 3. Conceptual Models
@@ -415,7 +415,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 30. Character Sets and Collations
 31. Storage Engines (SQL Server has one engine)
 
-# Indexing for High Performance
+### Indexing for High Performance
 1. Introduction
 2. Indexes
 3. Creating Indexes
@@ -430,7 +430,7 @@ By applying normalization, you can eliminate various types of anomalies (inserti
 12. Index Maintenance
 13. Performance Best Practices
 
-# Securing Databases
+### Securing Databases
 1. Introduction
 2. Creating a User
 3. Viewing Users

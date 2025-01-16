@@ -1,3 +1,4 @@
+-- select query
 USE SQL_LEARNING
 
 SELECT TOP 3 *

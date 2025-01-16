@@ -1,7 +1,7 @@
 CREATE DATABASE SQL_LEARNING;
 
 USE SQL_LEARNING;
-
+-- create query
 CREATE TABLE EmployeeInfo(
 EmployeeId int,
 FirstName varchar(50),

@@ -5,17 +5,16 @@
 ## Visit Us [Lapis Soft](http://www.lapissoft.com)
 
 # Welcome to Database Learning
+## [For More](SQL Database Introduction to Advance.pdf)
+
 
 # SQL Data Types
-
 Data types are used to represent the nature of the data that can be stored in the database table. For example, in a particular column of a table, if we want to store a string type of data, we will have to declare a string data type for this column. Data types are mainly classified into three categories for every database:
-
 1. String Data types
 2. Numeric Data types
 3. Date and time Data types
 
 ## SQL Server String Data Type
-
 | Data Type     | Description                                                            | Max Size                    |
 |---------------|------------------------------------------------------------------------|-----------------------------|
 | `char(n)`     | Fixed width character string data type.                                 | Up to 8000 characters       |
@@ -30,7 +29,6 @@ Data types are used to represent the nature of the data that can be stored in th
 | `image`       | Variable width Binary string data type.                                | Up to 2GB                   |
 
 ## SQL Server Numeric Data Types
-
 | Data Type     | Description                                                            | Range                         |
 |---------------|------------------------------------------------------------------------|-------------------------------|
 | `bit`         | Integer that can be 0, 1 or null.                                       | 0, 1, NULL                    |
@@ -43,7 +41,6 @@ Data types are used to represent the nature of the data that can be stored in th
 | `money`       | Monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807. | -922,337,233,685,477.5808 to 922,337,203,685,477.5807 |
 
 ## SQL Server Date and Time Data Type
-
 | Data Type     | Description                                                            | Range                         |
 |---------------|------------------------------------------------------------------------|-------------------------------|
 | `datetime`    | Date and time combination, supports range from January 1, 1753 to December 31, 9999 with 3.33 milliseconds accuracy. | January 1, 1753 to December 31, 9999 |
@@ -53,7 +50,6 @@ Data types are used to represent the nature of the data that can be stored in th
 | `timestamp`   | Stores a unique number when a new row gets created or modified, based on an internal clock. | N/A                           |
 
 ## SQL Server Other Data Types
-
 | Data Type      | Description                                                              | Max Size                     |
 |----------------|--------------------------------------------------------------------------|------------------------------|
 | `sql_variant`  | Used for various data types except for text, timestamp, and ntext. Stores up to 8000 bytes of data. | Up to 8000 bytes             |

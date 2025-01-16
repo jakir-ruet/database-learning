@@ -8,7 +8,7 @@
 
 # SQL Data Types
 
-Data types are used to represent the nature of the data that can be stored in the database table. For example, in a particular column of a table, if we want to store a string type of data then we will have to declare a string data type of this column. Data types are mainly classified into three categories for every database.
+Data types are used to represent the nature of the data that can be stored in the database table. For example, in a particular column of a table, if we want to store a string type of data, we will have to declare a string data type for this column. Data types are mainly classified into three categories for every database:
 
 1. String Data types
 2. Numeric Data types
@@ -16,72 +16,52 @@ Data types are used to represent the nature of the data that can be stored in th
 
 ## SQL Server String Data Type
 
-### char(n)
-It is a fixed width character string data type. Its size can be up to 8000 characters.
-
-### varchar(n)
-It is a variable width character string data type. Its size can be up to 8000 characters.
-
-### varchar(max)
-It is a variable width character string data type. Its size can be up to 1,073,741,824 characters.
-
-### text
-It is a variable width character string data type. Its size can be up to 2GB of text data.
-
-### nchar
-It is a fixed width Unicode string data type. Its size can be up to 4000 characters.
-
-### nvarchar
-It is a variable width Unicode string data type. Its size can be up to 4000 characters.
-
-### ntext
-It is a variable width Unicode string data type. Its size can be up to 2GB of text data.
-
-### binary(n)
-It is a fixed width Binary string data type. Its size can be up to 8000 bytes.
-
-### varbinary
-It is a variable width Binary string data type. Its size can be up to 8000 bytes.
-
-### image
-It is also a variable width Binary string data type. Its size can be up to 2GB.
+| Data Type     | Description                                                            | Max Size                    |
+|---------------|------------------------------------------------------------------------|-----------------------------|
+| `char(n)`     | Fixed width character string data type.                                 | Up to 8000 characters       |
+| `varchar(n)`  | Variable width character string data type.                             | Up to 8000 characters       |
+| `varchar(max)`| Variable width character string data type.                             | Up to 1,073,741,824 characters|
+| `text`        | Variable width character string data type.                             | Up to 2GB of text data      |
+| `nchar`       | Fixed width Unicode string data type.                                  | Up to 4000 characters       |
+| `nvarchar`    | Variable width Unicode string data type.                               | Up to 4000 characters       |
+| `ntext`       | Variable width Unicode string data type.                               | Up to 2GB of text data      |
+| `binary(n)`   | Fixed width Binary string data type.                                   | Up to 8000 bytes            |
+| `varbinary`   | Variable width Binary string data type.                                | Up to 8000 bytes            |
+| `image`       | Variable width Binary string data type.                                | Up to 2GB                   |
 
 ## SQL Server Numeric Data Types
 
-### bit
-It is an integer that can be 0, 1 or null.
-
-### tinyint
-It allows whole numbers from 0 to 255.
-
-### Smallint
-It allows whole numbers between -32,768 and 32,767.
-
-### Int
-It allows whole numbers between -2,147,483,648 and 2,147,483,647.
-
-### bigint
-It allows whole numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.
-
-### float(n)
-It is used to specify floating precision number data from -1.79E+308 to 1.79E+308. The `n` parameter indicates whether the field should hold 4 or 8 bytes. The default value of `n` is 53.
-
-### real
-It is a floating precision number of data from -3.40E+38 to 3.40E+38.
-
-### money
-It is used to specify monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807.
+| Data Type     | Description                                                            | Range                         |
+|---------------|------------------------------------------------------------------------|-------------------------------|
+| `bit`         | Integer that can be 0, 1 or null.                                       | 0, 1, NULL                    |
+| `tinyint`     | Whole numbers from 0 to 255.                                            | 0 to 255                      |
+| `smallint`    | Whole numbers between -32,768 and 32,767.                              | -32,768 to 32,767             |
+| `int`         | Whole numbers between -2,147,483,648 and 2,147,483,647.                | -2,147,483,648 to 2,147,483,647|
+| `bigint`      | Whole numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807. | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| `float(n)`    | Floating precision number data from -1.79E+308 to 1.79E+308. The `n` parameter indicates whether the field should hold 4 or 8 bytes. | -1.79E+308 to 1.79E+308      |
+| `real`        | Floating precision number from -3.40E+38 to 3.40E+38.                  | -3.40E+38 to 3.40E+38        |
+| `money`       | Monetary data from -922,337,233,685,477.5808 to 922,337,203,685,477.5807. | -922,337,233,685,477.5808 to 922,337,203,685,477.5807 |
 
 ## SQL Server Date and Time Data Type
 
-### datetime
-It is used to specify date and time combination. It supports range from January 1, 1753, to December 31, 9999 with an accuracy of 3.33 milliseconds.
+| Data Type     | Description                                                            | Range                         |
+|---------------|------------------------------------------------------------------------|-------------------------------|
+| `datetime`    | Date and time combination, supports range from January 1, 1753 to December 31, 9999 with 3.33 milliseconds accuracy. | January 1, 1753 to December 31, 9999 |
+| `datetime2`   | Date and time combination, supports range from January 1, 0001 to December 31, 9999 with 100 nanoseconds accuracy. | January 1, 0001 to December 31, 9999 |
+| `date`        | Stores date only.                                                       | January 1, 0001 to December 31, 9999 |
+| `time`        | Stores time only with 100 nanoseconds accuracy.                         | N/A                           |
+| `timestamp`   | Stores a unique number when a new row gets created or modified, based on an internal clock. | N/A                           |
 
-### datetime2
-It is used to specify date and time combination. It supports range from January 1, 0001 to December 31, 9999 with an accuracy of 100 nanoseconds.
+## SQL Server Other Data Types
 
-### date
-It is used to store date only.
+| Data Type      | Description                                                              | Max Size                     |
+|----------------|--------------------------------------------------------------------------|------------------------------|
+| `sql_variant`  | Used for various data types except for text, timestamp, and ntext. Stores up to 8000 bytes of data. | Up to 8000 bytes             |
+| `XML`          | Stores XML formatted data.                                                | Maximum 2GB                   |
+| `cursor`       | Stores a reference to a cursor used for database operations.             | N/A                          |
+| `table`        | Stores result set for later processing.                                   | N/A                          |
+| `uniqueidentifier` | Stores GUID (Globally Unique Identifier).                              | N/A                          |
+
 
 ## Courtesy of Jakir
 

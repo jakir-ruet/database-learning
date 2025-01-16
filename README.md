@@ -33,6 +33,7 @@ A database system provides various languages for defining, manipulating, and con
 - **Data Manipulation Language (DML)**,
 - **Data Control Language (DCL)**, and
 - **Transaction Control Language (TCL)**.
+
 In practice, these languages are not separate but form parts of a single database language, such as **SQL**.
 
 #### Data Definition Language (DDL)

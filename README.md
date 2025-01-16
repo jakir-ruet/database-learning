@@ -28,7 +28,12 @@ Although both DBMS and RDBMS are used to store information in a physical databas
 | 9   | Examples: File systems, XML, etc.                                        | Examples: MySQL, PostgreSQL, SQL Server, Oracle, etc.                                                              |
 
 ### Database Languages
-A database system provides various languages for defining, manipulating, and controlling data. These include the **Data Definition Language (DDL)**, **Data Manipulation Language (DML)**, **Data Control Language (DCL)**, and **Transaction Control Language (TCL)**. In practice, these languages are not separate but form parts of a single database language, such as **SQL**.
+A database system provides various languages for defining, manipulating, and controlling data. These include the 
+- **Data Definition Language (DDL)**,
+- **Data Manipulation Language (DML)**,
+- **Data Control Language (DCL)**, and
+- **Transaction Control Language (TCL)**.
+In practice, these languages are not separate but form parts of a single database language, such as **SQL**.
 
 #### Data Definition Language (DDL)
 DDL is used to specify the database schema. It is used for creating and altering database structures such as tables, schemas, indexes, and constraints. The following operations are part of DDL:

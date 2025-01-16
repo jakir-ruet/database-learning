@@ -222,6 +222,34 @@ Now the tables are in **BCNF**.
 ## Conclusion:
 Normalization helps in reducing redundancy, improving data integrity, and ensuring efficient storage and retrieval. However, in some cases, normalization can lead to performance issues (e.g., requiring many joins). In such cases, a balanced approach between normalization and denormalization may be needed based on specific use cases.
 
+# What is a Stored Procedure?
+
+A **Stored Procedure** is a precompiled collection of one or more SQL statements that can be executed as a single unit. Stored procedures are used to encapsulate complex business logic, reduce the amount of repetitive SQL code, and improve performance. They can be executed by applications, users, or other procedures. They are stored in the database itself, making them reusable and easier to manage.
+
+## Benefits of Using Stored Procedures:
+1. **Modularity:** Stored procedures allow you to write and maintain complex logic in a single place. This makes the code more modular and easier to manage.
+2. **Performance:** Stored procedures are precompiled, which can lead to performance improvements compared to executing individual SQL statements every time.
+3. **Security:** By using stored procedures, you can grant users permission to execute specific procedures without giving them direct access to the underlying tables.
+4. **Reusability:** Once written, stored procedures can be reused multiple times across different applications or parts of the same application.
+5. **Maintainability:** Since the logic is contained within the database, updating business logic can be done in one place without modifying application code.
+
+---
+
+## Syntax of a Stored Procedure in SQL:
+
+The basic syntax for creating a stored procedure in SQL is:
+
+```sql
+CREATE PROCEDURE ProcedureName
+    @Parameter1 DataType,
+    @Parameter2 DataType
+AS
+BEGIN
+    -- SQL Statements
+    SELECT * FROM TableName WHERE Column1 = @Parameter1;
+    -- Additional SQL statements
+END;
+
 ## Courtesy of Jakir
 
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]

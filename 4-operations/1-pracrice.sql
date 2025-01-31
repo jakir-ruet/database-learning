@@ -1,0 +1,6 @@
+SELECT * FROM SQL_LEARNING.dbo.EmployeeInfo
+
+SELECT * FROM SQL_LEARNING.dbo.EmployeeSalary
+
+SELECT * FROM SQL_LEARNING.dbo.EmployeeInfo
+INNER JOIN

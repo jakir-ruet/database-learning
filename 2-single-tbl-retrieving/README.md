@@ -1,20 +1,24 @@
 ### Welcome to Database Programming
 #### Practice 1
-- top
-- distinct
+- Top
+- Distinct
 - count
-- as
-- max
-- min
-- avg
+- As
+- Max
+- Min
+- Avg
 
 #### Practice 2
 - =
 - <>
 - <,>
-- and
-- or
-- like
-- null
-- not null
-- in
+- And
+- Or
+- Like
+- Null
+- Not Null
+- In
+
+#### Practice 3
+- Group By
+- Order By
